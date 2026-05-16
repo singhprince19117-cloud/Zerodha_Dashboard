@@ -5,6 +5,7 @@ import Holdings from "./Holdings";
 import Positions from "./Positions";
 import Funds from "./Funds";
 import Apps from "./Apps";
+import Orders from "./Orders";
 
 function Dashboard() {
     return ( 
