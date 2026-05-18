@@ -1,6 +1,14 @@
-import { holdings } from "../data/data";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Holdings() {
+    const [holdings, setholdings] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/allHoldings")
+            .then(r => {setholdings(r.data)});
+    }, [])
+
     const totalInvested = holdings.reduce((sum, s) => sum + s.avg * s.qty, 0);
     const totalCurrent = holdings.reduce((sum, s) => sum + s.price * s.qty, 0);
     const totalPnL = totalCurrent - totalInvested;

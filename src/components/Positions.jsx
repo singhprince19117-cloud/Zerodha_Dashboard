@@ -1,6 +1,14 @@
-import { positions } from "../data/data";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Positions() {
+    const [positions, setpositions] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/allPositions")
+            .then(r => { setpositions(r.data) });
+    }, [])
+
     const totalPnL = positions.reduce((sum, s) => sum + (s.price * s.qty - s.avg * s.qty), 0);
     const isOverallPnL = totalPnL >= 0;
 
